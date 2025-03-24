@@ -23,6 +23,9 @@
             font-size: 16px;
         }
     </style>
+</head>
+<body>
+    <div class="calendar" id="calendar"></div>
     <script>
         async function sendDateToBot(date) {
             if (window.Telegram?.WebApp) {
@@ -54,10 +57,8 @@
             }
         }
 
-        generateCalendar();
+        // Убедитесь, что функция generateCalendar вызывается после загрузки страницы
+        window.onload = generateCalendar;
     </script>
-</head>
-<body>
-    <div class="calendar" id="calendar"></div>
 </body>
 </html>
