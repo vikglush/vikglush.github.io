@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интерактивный календарь</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+        }
+        .calendar button {
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="calendar" id="calendar"></div>
+    <script>
+        function generateCalendar() {
+            const calendar = document.getElementById('calendar');
+            const today = new Date();
+            calendar.innerHTML = '';
+
+            for (let i = 0; i < 7; i++) {
+                const date = new Date(today);
+                date.setDate(today.getDate() + i);
+                const button = document.createElement('button');
+                button.textContent = date.toLocaleDateString();
+                button.addEventListener('click', () => {
+                    alert(`Вы выбрали дату: ${button.textContent}`);
+                    // Здесь вы можете отправить выбранную дату обратно в ваш бот
+                });
+                calendar.appendChild(button);
+            }
+        }
+
+        generateCalendar();
+    </script>
+</body>
+</html>
