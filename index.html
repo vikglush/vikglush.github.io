@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Интерактивный календарь</title>
+    <title>ИИИИИнтерактивный календарь</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -27,6 +27,11 @@
 <body>
     <div class="calendar" id="calendar"></div>
     <script>
+        // Инициализация Telegram Web App API
+        if (window.Telegram?.WebApp) {
+            window.Telegram.WebApp.ready();
+        }
+
         async function sendDateToBot(date) {
             if (window.Telegram?.WebApp) {
                 await window.Telegram.WebApp.MainButton.show();
