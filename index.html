@@ -23,23 +23,31 @@
             font-size: 16px;
         }
     </style>
-</head>
-<body>
-    <div class="calendar" id="calendar"></div>
     <script>
+        async function sendDateToBot(date) {
+            if (window.Telegram?.WebApp) {
+                await window.Telegram.WebApp.MainButton.show();
+                window.Telegram.WebApp.MainButton.text = 'Выбрать дату';
+                window.Telegram.WebApp.MainButton.onClick(() => {
+                    window.Telegram.WebApp.sendData(JSON.stringify({ date }));
+                });
+            } else {
+                alert('Telegram Web App API недоступен');
+            }
+        }
+
         function generateCalendar() {
             const calendar = document.getElementById('calendar');
             const today = new Date();
             calendar.innerHTML = '';
 
-            for (let i = 0; i < 7; i++) {
+            for (let i = 0; i < 30; i++) {
                 const date = new Date(today);
                 date.setDate(today.getDate() + i);
                 const button = document.createElement('button');
                 button.textContent = date.toLocaleDateString();
                 button.addEventListener('click', () => {
-                    alert(`Вы выбрали дату: ${button.textContent}`);
-                    // Здесь вы можете отправить выбранную дату обратно в ваш бот
+                    sendDateToBot(button.textContent);
                 });
                 calendar.appendChild(button);
             }
@@ -47,5 +55,8 @@
 
         generateCalendar();
     </script>
+</head>
+<body>
+    <div class="calendar" id="calendar"></div>
 </body>
 </html>
