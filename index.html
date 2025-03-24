@@ -30,6 +30,7 @@
                 window.Telegram.WebApp.MainButton.text = 'Выбрать дату';
                 window.Telegram.WebApp.MainButton.onClick(() => {
                     window.Telegram.WebApp.sendData(JSON.stringify({ date }));
+                    window.Telegram.WebApp.close();
                 });
             } else {
                 alert('Telegram Web App API недоступен');
